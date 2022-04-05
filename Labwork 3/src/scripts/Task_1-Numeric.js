@@ -7,5 +7,5 @@ function multiplyNumeric(object) {
     return object;
 }
 
-const object = {a: 1, b: 'box', c:3};
-console.log(multiplyNumeric(object))
+const object = { a: 1, b: 'box', c: 3 };
+alert(JSON.stringify(multiplyNumeric(object)));
