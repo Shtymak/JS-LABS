@@ -2,6 +2,7 @@ class Animal {
     static instanses = [];
     constructor(name, age) {
         this.name = name;
+        if (age < 0) this.age = 1;
         this.age = age;
         Animal.instanses = [...Animal.instanses, this];
     }
@@ -45,6 +46,8 @@ class Cat extends Animal {
 const betti = new Cow('Betti', 5);
 const murka = new Cow('Мурка', 5);
 const murka2 = new Cow('Мурка2', 5);
+const h = new Cow('Х', 8);
+h.addChild(betti);
 betti.addChild(murka);
 murka.addChild(murka2);
 betti.addChild(new Cow('Фурка', 5));
@@ -56,12 +59,22 @@ const murchik = new Cat('Мурчик', 5);
 ben.addChild(murchik);
 
 const bobik = new Dog('Бобик', 7);
-
+const ben1 = new Dog('Ben', 1);
+bobik.addChild(ben1);
 function CalculateAge() {
     return {
-        ageOfCows: Cow.instanses.reduce((total, cow) => total + cow.age, 0),
-        ageOfDogs: Dog.instanses.reduce((total, dog) => total + dog.age, 0),
-        ageOfCats: Cat.instanses.reduce((total, cat) => total + cat.age, 0),
+        ageOfCows: Cow.instanses.reduce(
+            (total, cow) => total + Math.abs(cow.age),
+            0
+        ),
+        ageOfDogs: Dog.instanses.reduce(
+            (total, dog) => total + Math.abs(dog.age),
+            0
+        ),
+        ageOfCats: Cat.instanses.reduce(
+            (total, cat) => total + Math.abs(cat.age),
+            0
+        ),
         totalAge: Animal.instanses.reduce(
             (total, animal) => total + animal.age,
             0
